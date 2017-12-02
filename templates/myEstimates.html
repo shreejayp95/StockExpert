@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<table class='table' id='example2'>
+				<thead>
+					<tr>
+					{% for col in columns %}
+						<th>{{ col }}</th>
+					{% endfor %}
+					</tr>
+				</thead>
+			</table>
+			<table class='table' id='example3'>
+				<thead>
+					<tr>
+					{% for col in columns %}
+						<th>{{ col }}</th>
+					{% endfor %}
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div class="col-sm-8">
+			<table class='table' id='example1'>
+				<thead>
+					<tr>
+					{% for col in columns %}
+						<th>{{ col }}</th>
+					{% endfor %}
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function() {
+		$('#example1').dataTable({
+			"sDom": "<'row-fluid'<'span6 toolbar'><'span6'>r>t<'row-fluid'<'span6'f><'span6'p>>",
+			"bProcessing": true,
+			"bjQueryUI": true,
+			"sAjaxSource": "{{ url_for('example1') }}",
+		});
+		$('#example3').dataTable({
+			"sDom": "<'row-fluid'<'span6 toolbar'><'span6'>r>t<'row-fluid'<'span6'f><'span6'p>>",
+			"bProcessing": true,
+			"bjQueryUI": true,
+			"sAjaxSource": "{{ url_for('example3') }}",
+		});
+		$('#example2').dataTable({
+			"sDom": "<'row-fluid'<'span6 toolbar'><'span6'>r>t<'row-fluid'<'span6'f><'span6'p>>",
+			"bProcessing": true,
+			"bjQueryUI": true,
+			"sAjaxSource": "{{ url_for('example2') }}",
+		});
+		$(".dataTables_filter").hide();
+	});
+</script>
+{% endblock %}
